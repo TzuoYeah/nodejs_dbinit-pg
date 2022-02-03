@@ -4,33 +4,32 @@ exports.users = async client=>{
         name,
         email,
         password,
-        comment,
-        age,
         available
-    ) VALUES($1, $2, $3, $4, $5, $6)
+    ) VALUES($1, $2, $3, $4)
     `
-    await client.query(sql,[
-        'aaaa',
-        'a123',
-        '0000',
-        'comment',
-        20,
-        true
-    ])
-    await client.query(sql,[
-        'bbbb',
-        'b456',
-        '1234',
-        'comment',
-        23,
-        true
-    ])
-    await client.query(sql,[
-        'cccc',
-        'c789',
-        '5432',
-        '',
-        20,
-        false
-    ])
+    const seeds = [
+        [
+            'aaaa',
+            'a123',
+            '0000',
+            true
+        ],
+        [
+            'bbbb',
+            'b456',
+            '1234',
+            true
+        ],
+        [
+            'cccc',
+            'c789',
+            '5432',
+            false
+        ]
+    ]
+
+    let i= 0
+    while(i<seeds.length){
+        await client.query(sql,seeds[i]).then( i++ )
+    }
 }

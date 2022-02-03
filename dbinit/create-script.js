@@ -1,10 +1,8 @@
 const users = `
 CREATE TABLE IF NOT EXISTS users(
     name varchar(200) NOT NULL,
-    email varchar(30) NOT NULL,
-    password varchar(30) NOT NULL,
-    comment varchar(200),
-    age integer,
+    email varchar(60) NOT NULL UNIQUE,
+    password varchar(60) NOT NULL,
     available boolean
 );
 `
